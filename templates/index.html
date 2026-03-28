@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Handwriting AI Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #f5f0e8;
+      background-image:
+        repeating-linear-gradient(
+          transparent,
+          transparent 31px,
+          #c8d8e8 31px,
+          #c8d8e8 32px
+        );
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 16px 60px;
+    }
+
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 2.6rem;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      font-size: 0.95rem;
+      margin-bottom: 36px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(6px);
+      border-radius: 18px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 540px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #374151;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem;
+      color: #1a1a2e;
+      background: #fff;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #3b5bdb;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 160px;
+      line-height: 1.6;
+    }
+
+    .selects-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .selects-row .field {
+      margin-bottom: 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    button:hover {
+      background: #2d3561;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .note {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.82rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✍️ Handwriting AI Generator</h1>
+  <p class="subtitle">Paste your text — get a real handwritten assignment PDF</p>
+
+  <div class="card">
+    <form action="/generate" method="post">
+
+      <div class="row">
+        <div class="field">
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="e.g. Rahul Sharma" required />
+        </div>
+        <div class="field">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="e.g. Physics" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Assignment Content</label>
+        <textarea name="content" placeholder="Paste your notes or text here..." required></textarea>
+      </div>
+
+      <div class="selects-row">
+        <div class="field">
+          <label>Style</label>
+          <select name="style">
+            <option value="1">Style 1</option>
+            <option value="2">Style 2</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Ink Color</label>
+          <select name="ink">
+            <option value="blue">🖊️ Blue</option>
+            <option value="black">🖋️ Black</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Output</label>
+          <select name="output">
+            <option value="pdf">📄 PDF</option>
+            <option value="image">🖼️ Image</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit">✨ Generate Assignment</button>
+
+    </form>
+    <p class="note">Your file will download automatically after generation.</p>
+  </div>
+
+</body>
+</html>
