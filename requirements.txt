@@ -2,3 +2,4 @@ flask
 reportlab
 pillow
 pdf2image
+gunicorn
